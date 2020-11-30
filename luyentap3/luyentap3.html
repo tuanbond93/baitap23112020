@@ -15,14 +15,26 @@
         gameContext.fillStyle = '#fa4b2a';
         gameContext.fillRect(20, 20, 150, 100);
         let carYPosition = 20;
+
+        let gameContext2 = document.getElementById("game").getContext("2d");
+        gameContext2.beginPath();
+        gameContext2.fillStyle = 'blue';
+        gameContext2.fillRect(20, 20, 150, 100);
+        let carXPosition = 20;
         
         function drawCar() {
             gameContext.beginPath();
             gameContext.fillStyle = '#fa4b2a';
             gameContext.fillRect(20, carYPosition, 150, 100);
         }
+        function drawCar2() {
+            gameContext.beginPath();
+            gameContext.fillStyle = "Blue";
+            gameContext.fillRect(carXPosition, 20, 150, 100);
+        }
         
         
+
         let yDistance = 1;
         function moveCar() {
             gameContext.clearRect(20, carYPosition, 150, 100);
@@ -38,6 +50,24 @@
         }
         setInterval(moveCar, 5);
 
+        
+        
+        
+        
+        let xDistance = 1;
+        function moveCar2() {
+            gameContext.clearRect(carXPosition, 20, 150, 100);
+
+            let isTouchLeft = carXPosition < 0;
+            let isTouchRight = carXPosition + 150 > 800;
+            if (isTouchLeft || isTouchRight) {
+                xDistance = -xDistance;
+            }
+
+            carXPosition += xDistance;
+            drawCar2();
+        }
+        setInterval(moveCar2, 1);
     </script>
 </body>
 
